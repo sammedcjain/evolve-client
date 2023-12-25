@@ -113,6 +113,13 @@ h2{
   font-size: 27px;
 }
 
+@media (max-width: 1000px) {
+  
+  .h2div {
+    max-width: 85%;
+    margin:auto;
+  }
+}
 
   .navbar{
     margin-bottom:50px;

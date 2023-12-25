@@ -2,6 +2,8 @@
 body {
   background-color: black;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -21,6 +23,7 @@ h2 {
 }
 
 /* Form styles */
+@media (min-width: 1000px) {
 .ev_auth {
   margin: 0 auto;
   width: 400px;
@@ -29,7 +32,18 @@ h2 {
   padding: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
+}
+@media (max-width: 1000px) {
+  .ev_auth {
+    width: 70%;
+    margin: auto;
+    margin: 0 auto;
+background-color: #fff;
+border-radius: 8px;
+padding: 25px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
 .ev_auth input[type="text"],
 .ev_auth input[type="password"] {
   width: 100%;

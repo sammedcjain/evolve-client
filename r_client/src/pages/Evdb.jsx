@@ -14,8 +14,26 @@ const Evdb = () => {
   });
   const [AuthUser, setAuthUser] = useState(false);
   const [Loading, setLoading] = useState(true);
-
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
   useEffect(() => {
+    const loadScript = (src, callback) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+
+      script.onload = callback;
+
+      document.body.appendChild(script);
+    };
+
+    loadScript("/css-js/js/jquery.min.js", () => {
+      loadScript("/css-js/js/popper.js", () => {
+        loadScript("/css-js/js/bootstrap.min.js", () => {
+          // All scripts are loaded
+          setScriptsLoaded(true);
+        });
+      });
+    });
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -60,7 +78,7 @@ const Evdb = () => {
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         ></link>
-        <link rel="stylesheet" href="./css-js/css/evdb.css" />
+        <link rel="stylesheet" href="/css-js/css/evdb.css" />
         <body>
           <header>
             <nav className="navbar navbar-expand-lg">
@@ -187,7 +205,7 @@ const Evdb = () => {
                         />
                       </div>
                       <div style={{ marginTop: "30px", textAlign: "center" }}>
-                        <p style={{ fontSize: "25px" }}>{item}</p>
+                        <p className="recent_p">{item}</p>
                         <Link
                           style={{ marginBottom: "5px", color: "black" }}
                           to="/requirements"

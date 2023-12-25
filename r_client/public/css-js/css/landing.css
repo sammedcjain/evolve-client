@@ -4,6 +4,98 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
 }
 
+@media (max-width: 1000px) {
+  /* Mobile styles */
+  .mb-5{
+    font-size:2rem ;
+  }
+  .font-alt{
+    font-size:1.5rem ;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-link {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  #hero p {
+    font-size: 1.2rem;
+  }
+
+  #hero button {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+  }
+
+  #features h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    margin-bottom: 3rem;
+  }
+
+  .carousel-item {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .main_heading {
+    font-size: 50px;
+    color:lightgreen;
+  }
+
+  .inside_heading {
+    margin:auto;
+    font-size: 28px;
+    max-width: 70%;
+    text-align: center;
+    color:lightgreen;
+  }
+.inside_heading2{
+  margin:auto;
+    font-size: 26px;
+    max-width: 80%;
+    text-align: center;
+    color:lightgreen;
+}
+  #footer h1 {
+    font-size: 36px;
+  }
+
+  #footer h2 {
+    font-size: 20px;
+  }
+
+  form.ev {
+    margin: 20px 15px;
+    max-width: 400px;
+  }
+
+  #footer button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .social-icons {
+    margin-bottom: 20px;
+  }
+
+  #footer p {
+    font-size: 16px;
+  }
+}
+
 .navbar{
   background: #1A1A1A;
 }
@@ -57,19 +149,23 @@ body {
   padding-bottom:210px;
 }
 
-.main_heading{
-  font-size: 200px;
-  color:lightgreen;
+@media (min-width: 1000px){
+  .main_heading{
+    font-size: 180px;
+    color:lightgreen;
+  }
+  .inside_heading{
+    margin:auto;
+    font-size: 85px;
+    color:lightgreen;
+    max-width:1000px;
+  }
 }
-.inside_heading{
-  margin:auto;
-  font-size: 85px;
-  color:lightgreen;
-  max-width:1000px;
-}
+
+
 #features {
   background: #1A1A1A;
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 #features h2 {
@@ -84,6 +180,7 @@ body {
 
   background-color: black;
   border: none;
+  
 }
 
 .card-title {
@@ -94,9 +191,11 @@ body {
 }
 
 .card-text {
-
+  text-align: justify;
   font-size: 1.2rem;
   line-height: 2rem;
+  max-width: 90%;
+  margin:auto;
 }
 
 .color-green{

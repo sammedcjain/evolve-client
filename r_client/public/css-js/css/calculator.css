@@ -1,6 +1,17 @@
 .hidden{
     display:none
   }
+
+  @media (max-width: 1000px){
+    .section {
+      width: 90%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #111;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+  }
   body {
      font-family: 'Roboto', sans-serif;
     background-color: #000;
@@ -12,13 +23,14 @@
   h3 {
     color: lightgreen;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 25px;
+    margin-bottom:25px
   }
   label{
     font-size:18px;
   }
   .section {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: #111;

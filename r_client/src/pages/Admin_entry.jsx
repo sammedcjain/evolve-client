@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotAuth from "../components/NotAuth.jsx";
 import LoadingPage from "../components/LoadingPage.jsx";
+import { Link } from "react-router-dom";
 
 const Admin_entry = () => {
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -298,9 +299,11 @@ const Admin_entry = () => {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         ></link>
         <link rel="stylesheet" href="/css-js/css/admin_post.css" />
-        <h1>Evolve 2.0</h1>
-        <h2>Admin access granted!</h2>
-        <h3>Add elements to the database:</h3>
+        <div className="text_com">
+          <h1>Evolve 2.0</h1>
+          <h2>Admin access granted!</h2>
+          <h3>Add elements to the database:</h3>
+        </div>
         <form onSubmit={handleSubmit} id="addForm">
           <label htmlFor="vehicle_id">Vehicle Id (Number): </label>
           <input
@@ -740,7 +743,9 @@ const Admin_entry = () => {
         </form>
         <br />
         <br />
-        <h2>Delete entries from database by giving vehicle name:</h2>
+        <div className="text_com">
+          <h2>Delete entries from database by giving vehicle name:</h2>
+        </div>
         <form onSubmit={handleDeleteSubmit}>
           <label htmlFor="vehicle_del">Vehicle Name: </label>
           <input
@@ -754,7 +759,11 @@ const Admin_entry = () => {
           </button>
         </form>
 
-        <h3>Update elements by giving vehicle name and the updated entry...</h3>
+        <div className="text_com">
+          <h3>
+            Update elements by giving vehicle name and the updated entry...
+          </h3>
+        </div>
         <form className="update" onSubmit={handleUpdateSubmit}>
           <label htmlFor="vehicle">Vehicle Name (String): </label>
           <input
@@ -913,6 +922,11 @@ const Admin_entry = () => {
             Update
           </button>
         </form>
+        <div className="align_cen">
+          <Link className="button_link" to="/logout">
+            Logout from Admin Access
+          </Link>
+        </div>
         <footer style={{ margin: "75px auto" }}>
           <div className="container text-center">
             <p>© 2023 EV Dekho. All rights reserved.</p>

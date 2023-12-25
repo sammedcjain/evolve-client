@@ -5,8 +5,28 @@ import $ from "jquery";
 
 function Compareres() {
   const [vehicleData, setVehicledata] = useState([]);
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
   const location = useLocation();
   useEffect(() => {
+    const loadScript = (src, callback) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+
+      script.onload = callback;
+
+      document.body.appendChild(script);
+    };
+
+    loadScript("/css-js/js/jquery.min.js", () => {
+      loadScript("/css-js/js/popper.js", () => {
+        loadScript("/css-js/js/bootstrap.min.js", () => {
+          // All scripts are loaded
+          setScriptsLoaded(true);
+        });
+      });
+    });
+
     if (location.state?.id) {
       setVehicledata(location.state.id);
     }

@@ -24,17 +24,24 @@ function NotAuth() {
             align-items: center;
             justify-content: center;
           }
-
+          
           .oops-icon {
             font-size: 7em;
             margin-bottom: 1px;
           }
-
+          @media (min-width: 1000px) {
           .oops-text {
             margin-top: 15px;
             margin-bottom: 20px;
             font-size: 2.5em;
-            
+          }
+          }
+          @media (max-width: 1000px) {
+          .oops-text {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            font-size: 2em;
+          }
           }
 
           .login-button {

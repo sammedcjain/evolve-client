@@ -1,4 +1,17 @@
-
+@media (max-width: 1000px) {
+  .recent_p{
+    font-size: 23px;
+  }
+  .recent{
+    min-width:300px;
+  }
+  }
+  @media (min-width: 1000px) {
+  .recent_p
+    {
+      font-size: 25px;
+    }
+  }
 body {
     background-color: #000;
     color: #fff;

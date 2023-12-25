@@ -6,6 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LogoutMessage from "../components/Logout_msg";
+import LoadingPage from "../components/LoadingPage";
 
 const Landing = () => {
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -108,6 +109,8 @@ const Landing = () => {
 
   if (loggingOut) {
     return <LogoutMessage onComplete={() => updateUser(0)} />;
+  } else if (Loading === true) {
+    return <LoadingPage />;
   } else {
     return (
       <div>
@@ -238,7 +241,7 @@ const Landing = () => {
                 </h1>
               </div>
               <div className="carousel-item">
-                <h1 className="inside_heading">
+                <h1 className="inside_heading inside_heading2">
                   Explore Compare & Save <br />
                   with Electric Vehicles
                 </h1>

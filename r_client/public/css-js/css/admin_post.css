@@ -1,3 +1,21 @@
+@media (max-width: 1000px){
+  .text_com{
+    width:80%;
+    margin: auto;
+  }
+  form{
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #111;
+    border-radius: 5px;
+    margin-top: 30px;
+    width:90%;
+  }
+}
+.align_cen{
+text-align: center;
+margin-top: 30px;
+}
 body {
     background-color: #000;
     color: #fff;
@@ -10,7 +28,7 @@ body {
     text-align: center;
     margin-top: 30px;
   }
-
+  @media (min-width: 1000px){
   form {
     max-width: 800px;
     margin: 0 auto;
@@ -19,7 +37,23 @@ body {
     border-radius: 5px;
     margin-top: 30px;
   }
+  }
+  .button_link {
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: lightgreen;
+    color: black;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
+  .button_link:hover {
+    text-decoration: none;
+    background-color: #4CAF50;
+  }
   label {
     display: block;
     margin-bottom: 10px;

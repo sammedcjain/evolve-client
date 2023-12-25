@@ -1,3 +1,59 @@
+@media (max-width: 1000px) {
+  .navbar-toggler{
+    padding-right:0;
+    text-align: end;
+    vertical-align:middle;
+    margin:0;
+  }
+  #carouselExampleIndicators {
+    position: relative;
+    margin-bottom:30px;
+    width:90%;
+    margin:auto;
+    height:300px;
+  }
+  .carousel-control-next {
+    display:none;
+  }
+  .carousel-control-prev {
+    display:none;
+  }
+  .carousel-image{
+    width:100%;
+    height:auto;
+  }
+  details {
+    width: 350px;
+    margin: auto;
+    background: #282828;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, .4);
+    border-radius: 5px;
+    overflow: hidden;
+   }
+   iframe{
+    width:320px;
+    height:200px;
+    margin:auto;
+   }
+   ul{
+    padding:16px 9px;
+   }
+   .buynow{
+    width:50%;
+  }
+}
+@media (min-width: 1000px){
+.buynow{
+  width:15%;
+}
+}
+footer{
+  text-align: center;
+}
+.footer-text{
+  font-size: 18px;
+}
 #carouselExampleIndicators {
   position: relative;
   margin-bottom:30px;
@@ -30,7 +86,7 @@
   margin: auto; /* Center the image horizontally */
 }
 
-
+@media (min-width: 1000px){
   details {
  width: 50%;
  margin: 0 auto;
@@ -39,6 +95,7 @@
  box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, .4);
  border-radius: 5px;
  overflow: hidden;
+}
 }
 summary {
   color:lightgreen;

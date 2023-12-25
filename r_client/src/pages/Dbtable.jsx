@@ -9,7 +9,28 @@ import { IoCaretBackCircle } from "react-icons/io5";
 function Dbtable() {
   const location = useLocation();
   const [evdb, setEvdb] = useState([]);
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
+
   useEffect(() => {
+    const loadScript = (src, callback) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+
+      script.onload = callback;
+
+      document.body.appendChild(script);
+    };
+
+    loadScript("/css-js/js/jquery.min.js", () => {
+      loadScript("/css-js/js/popper.js", () => {
+        loadScript("/css-js/js/bootstrap.min.js", () => {
+          // All scripts are loaded
+          setScriptsLoaded(true);
+        });
+      });
+    });
+
     if (location.state?.id) {
       setEvdb(location.state.id);
     }
@@ -76,7 +97,7 @@ function Dbtable() {
           </header>
 
           <h1>Ev Dekho</h1>
-          <h2>Vehicles as per your requirements :</h2>
+          <h2 className="h2div">Vehicles as per your requirements :</h2>
           <div className="card-container">
             {evdb.map((item, index) => (
               <div

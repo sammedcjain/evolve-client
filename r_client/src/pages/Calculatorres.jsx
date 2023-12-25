@@ -35,11 +35,7 @@ function Calculatorres() {
           </a>
           <body style={{ background: "black" }}>
             <div className="container">
-              <h1
-                style={{ fontSize: "70px", color: "lightgreen", marginTop: 0 }}
-              >
-                Your Savings!
-              </h1>
+              <h1>Your Savings!</h1>
               <div className="card">
                 <h3>
                   Your spend Rs. <span>{evcal.petrol_Total}</span> in 1 year for

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -53,6 +53,7 @@ function Calculator() {
   const [consumption, setConsumption] = useState();
   const [range, setRange] = useState();
   const [Charges, setCharges] = useState();
+  const [scriptsLoaded, setScriptsLoaded] = useState(false);
 
   async function handleCalculate(e) {
     e.preventDefault();
@@ -79,7 +80,26 @@ function Calculator() {
       });
     }
   }
+  useEffect(() => {
+    const loadScript = (src, callback) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
 
+      script.onload = callback;
+
+      document.body.appendChild(script);
+    };
+
+    loadScript("/css-js/js/jquery.min.js", () => {
+      loadScript("/css-js/js/popper.js", () => {
+        loadScript("/css-js/js/bootstrap.min.js", () => {
+          // All scripts are loaded
+          setScriptsLoaded(true);
+        });
+      });
+    });
+  }, []);
   return (
     <div>
       <head>
@@ -148,7 +168,7 @@ function Calculator() {
             </div>
           </nav>
         </header>
-        <h1 style={{ fontSize: "60px" }}>Calculate your savings!</h1>
+        <h1>Calculate your savings!</h1>
         <form className="cal" onSubmit={handleCalculate} method="post">
           <div className="section">
             <span>
