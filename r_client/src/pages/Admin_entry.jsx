@@ -56,6 +56,8 @@ const Admin_entry = () => {
     vehicle_del: "", // For the delete form
     to_update: "", // For the update form
     update_data: "", // For the update form
+    inviteeEmail: "",
+    admin_username: "",
   });
 
   // Update state when input changes
@@ -64,6 +66,55 @@ const Admin_entry = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleInvitee = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token not found");
+        // Handle the case where the token is not available or not valid
+        return;
+      }
+
+      // Set the Authorization header with the token
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      await axios
+        .post(
+          `${apiUrl}/admin_invitee`,
+          {
+            username: formData.admin_username,
+            inviteeEmail: formData.inviteeEmail,
+          },
+          {
+            headers: headers,
+          }
+        )
+        .then((res) => {
+          console.log(res, res.data);
+          if (res.data.error) {
+            toast.error(res.data.error, {
+              position: toast.POSITION.BOTTOM_RIGHT,
+              autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
+            });
+          } else {
+            console.log(res.data.message);
+            toast.success(res.data.message, {
+              position: toast.POSITION.BOTTOM_RIGHT,
+              autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
+            });
+          }
+        });
+    } catch (error) {
+      console.error("invitee server error", error);
+      toast.error(error.response.data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
+      });
+    }
+  };
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -920,6 +971,26 @@ const Admin_entry = () => {
 
           <button type="submit" name="update_submit">
             Update
+          </button>
+        </form>
+        <h2>Add invitee</h2>
+        <form onSubmit={handleInvitee}>
+          <label htmlFor="Invitee">Invitee Username: </label>
+          <input
+            type="text"
+            name="inviteeEmail"
+            value={formData.inviteeEmail}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="Invitee">Your Username: </label>
+          <input
+            type="text"
+            name="admin_username"
+            value={formData.admin_username}
+            onChange={handleInputChange}
+          />
+          <button type="submit" name="button">
+            Add Invitee
           </button>
         </form>
         <div className="align_cen">
