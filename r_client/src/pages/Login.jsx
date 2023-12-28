@@ -8,7 +8,6 @@ import Loading_msg from "../components/LoadingPage";
 
 const Login = () => {
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-  const messages = "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [Loading, setLoading] = useState(false);
@@ -24,33 +23,40 @@ const Login = () => {
   async function f_onsubmit(e) {
     e.preventDefault();
     setLoading(true);
-    try {
-      await axios
-        .post(`${apiUrl}/login`, {
-          username: username,
-          password: password,
-        })
-        .then((res) => {
-          setLoading(false);
-          const { token, redirectUrl } = res.data;
-          // Store the token in local storage
-          localStorage.setItem("token", token);
 
-          if (redirectUrl) {
-            navigate(redirectUrl);
-          } else {
-            toast.error("Error Occured", {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
-            });
-          }
+    try {
+      const res = await axios.post(`${apiUrl}/login`, {
+        username: username,
+        password: password,
+      });
+
+      setLoading(false);
+      console.log(res);
+
+      if (res.data && res.data.error) {
+        toast.error(res.data.error, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
         });
+      } else if (res.data) {
+        const { token, redirectUrl } = res.data;
+        localStorage.setItem("token", token);
+
+        if (redirectUrl) {
+          navigate(redirectUrl);
+        } else {
+          toast.error("An error occurred", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+          });
+        }
+      }
     } catch (e) {
       setLoading(false);
       console.log(e);
-      toast.error(e.response.data.message, {
+      toast.error("An unexpected error occurred", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
+        autoClose: 3000,
       });
     }
   }
@@ -109,15 +115,6 @@ const Login = () => {
         </a>
         {/* action="/login" */}
         <form onSubmit={f_onsubmit} className="ev_auth" method="post">
-          {messages.error && messages.error.length > 0 && (
-            <div
-              className="alert alert-danger"
-              role="alert"
-              style={{ textAlign: "center" }}
-            >
-              {messages.error[0]}
-            </div>
-          )}
           Username :
           <input
             onChange={f_onchange}

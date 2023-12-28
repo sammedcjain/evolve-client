@@ -12,6 +12,7 @@ const Landing = () => {
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [loggingOut, setLoggingOut] = useState(false);
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
+
   const handleLogout = async () => {
     try {
       // Set loggingOut state to true to display LogoutMessage

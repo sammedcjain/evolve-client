@@ -33,7 +33,7 @@ const Admin_register = () => {
           if (redirectUrl) {
             navigate(redirectUrl);
           } else {
-            toast.error("Error Occured", {
+            toast.error(res.data.error, {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 3000, // Duration for which the toast will be shown (in milliseconds)
             });
