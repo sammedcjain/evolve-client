@@ -8,8 +8,16 @@ function NotFound() {
       <style>
         {`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        @media (max-width: 1000px){
+          .oops-text {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            font-size: 2em;
 
+          }
+          }
           body {
+            text-align:center;
             background: black;
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -29,12 +37,12 @@ function NotFound() {
             font-size: 7em;
             margin-bottom: 1px;
           }
-
+          @media (min-width: 1000px){
           .oops-text {
             margin-top: 15px;
             margin-bottom: 20px;
             font-size: 2.5em;
-            
+            }
           }
 
           .login-button {

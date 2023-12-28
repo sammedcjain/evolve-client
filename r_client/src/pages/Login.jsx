@@ -4,12 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading_msg from "../components/LoadingPage";
 
 const Login = () => {
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const messages = "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [Loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const f_onchange = (e) => {
     setUsername(e.target.value);
@@ -21,6 +23,7 @@ const Login = () => {
 
   async function f_onsubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios
         .post(`${apiUrl}/login`, {
@@ -28,6 +31,7 @@ const Login = () => {
           password: password,
         })
         .then((res) => {
+          setLoading(false);
           const { token, redirectUrl } = res.data;
           // Store the token in local storage
           localStorage.setItem("token", token);
@@ -42,6 +46,7 @@ const Login = () => {
           }
         });
     } catch (e) {
+      setLoading(false);
       console.log(e);
       toast.error(e.response.data.message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -50,10 +55,13 @@ const Login = () => {
     }
   }
 
-  return (
-    <>
-      <style media="screen">
-        {`
+  if (Loading === true) {
+    return <Loading_msg />;
+  } else {
+    return (
+      <>
+        <style media="screen">
+          {`
           .btn-social {
             color: #fff;
             text-align: center;
@@ -85,53 +93,53 @@ const Login = () => {
           }
           
         `}
-      </style>
-      <link rel="stylesheet" href="./css-js/css/auth.css" />
-      <ToastContainer />
-      <Link to="/">
-        <IoArrowBackCircleSharp size={50} color="#90ee90" />
-      </Link>
-      <h1>EV DEKHO</h1>
-      <h2>Login to continue:</h2>
-      <a href="/" style={{ marginTop: "15px", backgroundColor: "black" }}>
-        <i
-          className="fa-solid fa-arrow-left fa-2xl"
-          style={{ paddingLeft: "500px", color: "#4CAF50" }}
-        ></i>
-      </a>
-      {/* action="/login" */}
-      <form onSubmit={f_onsubmit} className="ev_auth" method="post">
-        {messages.error && messages.error.length > 0 && (
-          <div
-            className="alert alert-danger"
-            role="alert"
-            style={{ textAlign: "center" }}
-          >
-            {messages.error[0]}
-          </div>
-        )}
-        Username :
-        <input
-          onChange={f_onchange}
-          type="text"
-          name="username"
-          value={username}
-          required
-        />{" "}
-        <br /> <br />
-        Password :
-        <input
-          onChange={f_passchange}
-          type="password"
-          name="password"
-          value={password}
-          required
-        />{" "}
-        <br /> <br />
-        <button type="submit" name="ev-auth" value="ev-auth">
-          Submit
-        </button>
-        {/* <a
+        </style>
+        <link rel="stylesheet" href="./css-js/css/auth.css" />
+        <ToastContainer />
+        <Link to="/">
+          <IoArrowBackCircleSharp size={50} color="#90ee90" />
+        </Link>
+        <h1>EV DEKHO</h1>
+        <h2>Login to continue:</h2>
+        <a href="/" style={{ marginTop: "15px", backgroundColor: "black" }}>
+          <i
+            className="fa-solid fa-arrow-left fa-2xl"
+            style={{ paddingLeft: "500px", color: "#4CAF50" }}
+          ></i>
+        </a>
+        {/* action="/login" */}
+        <form onSubmit={f_onsubmit} className="ev_auth" method="post">
+          {messages.error && messages.error.length > 0 && (
+            <div
+              className="alert alert-danger"
+              role="alert"
+              style={{ textAlign: "center" }}
+            >
+              {messages.error[0]}
+            </div>
+          )}
+          Username :
+          <input
+            onChange={f_onchange}
+            type="text"
+            name="username"
+            value={username}
+            required
+          />{" "}
+          <br /> <br />
+          Password :
+          <input
+            onChange={f_passchange}
+            type="password"
+            name="password"
+            value={password}
+            required
+          />{" "}
+          <br /> <br />
+          <button type="submit" name="ev-auth" value="ev-auth">
+            Submit
+          </button>
+          {/* <a
           style={{ marginTop: "20px" }}
           className="btn btn-block btn-social btn-google"
           href="/auth/google"
@@ -140,14 +148,14 @@ const Login = () => {
           <i className="fab fa-google"></i>
           Sign Up with Google
         </a> */}
-      </form>
+        </form>
 
-      <script
-        src="https://kit.fontawesome.com/1465e7da9e.js"
-        crossOrigin="anonymous"
-      ></script>
-    </>
-  );
+        <script
+          src="https://kit.fontawesome.com/1465e7da9e.js"
+          crossOrigin="anonymous"
+        ></script>
+      </>
+    );
+  }
 };
-
 export default Login;
