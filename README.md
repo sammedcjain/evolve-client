@@ -38,6 +38,7 @@ This repository - evolve-client only containts the client react.js code and you 
   - body-parser
 
 Backend node.js server is deployed using render = https://evolve-server.onrender.com/ <br>
+server is also deployed using cyclic = https://modern-pleat-dog.cyclic.app/ <br>
 Front-end react part is deployed using Vercel
 
 You can access my website using this link: https://evolve-client.vercel.app/
